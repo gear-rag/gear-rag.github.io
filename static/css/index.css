@@ -5,6 +5,10 @@ body {
   color: #000000;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .footer .icon-link {
   font-size: 25px;
   color: #000;
@@ -23,6 +27,33 @@ body {
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;
+}
+
+/* Add these to your CSS */
+.container.is-max-desktop {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.code-content-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-content pre {
+  min-width: fit-content; /* Force scroll on overflow */
+  display: inline-block; /* Contain wide content */
+}
+
+/* Fix tab container scrolling */
+.tab-container {
+  overflow-x: auto;
+  scrollbar-width: thin; /* Firefox */
+}
+
+.tab-container::-webkit-scrollbar {
+  height: 4px; /* Chrome/Safari */
 }
 
 .teaser {
@@ -79,6 +110,19 @@ body {
   display: inline-block;
 }
 
+/* Close icon styles */
+.close-icon {
+  margin-left: 8px; /* Space between text and cross */
+  color: #ccc; /* Light grey color */
+  font-size: 24px; /* Adjust size as needed */
+  display: none; /* Hidden by default */
+}
+
+/* Show close icon only for active tabs */
+.tab.active .close-icon {
+  display: inline; /* Show the cross */
+}
+
 /* Code Window Styles */
 .code-window {
   background-color: #2d2d2d;
@@ -123,6 +167,40 @@ body {
   background-color: #27c93f;
 }
 
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+/* Add this to your existing CSS */
+.tab-icon {
+  width: 15px; /* Adjust the size of the logo as needed */
+  height: 15px; /* Adjust the size of the logo as needed */
+  margin-right: 8px; /* Add spacing between the logo and the text */
+  vertical-align: middle; /* Align the logo vertically with the text */
+  transition: filter 0.3s ease; /* Smooth transition for the filter */
+}
+
+/* Normal appearance for the logo in active tabs */
+.tab.active .tab-icon {
+  filter: grayscale(0%); /* No grayscale (normal appearance) */
+}
+
+/* Greyed-out appearance for the logo in inactive tabs */
+.tab:not(.active) .tab-icon {
+  filter: grayscale(100%); /* Full grayscale (grey appearance) */
+}
+
 /* Tab Container and Tabs */
 .tab-container {
   display: flex;
@@ -155,6 +233,8 @@ body {
   align-items: center;
   flex-shrink: 0; /* Prevent tab from shrinking */
 }
+
+
 
 /* Maintain existing hover and active states */
 .tab:hover {
@@ -189,6 +269,10 @@ body {
 /* Code syntax highlighting */
 .code-keyword {
   color: #569cd6;  /* def, class, return etc */
+}
+
+.code-class {
+  color: #4ec9b0;  /* Green color for classes */
 }
 
 .code-function {
@@ -249,3 +333,4 @@ pre {
 code {
   font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
 }
+

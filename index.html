@@ -109,6 +109,16 @@
                     <span>PDF</span>
                   </a>
                 </span>
+
+                <!-- Code Snippets Link -->
+                <span class="link-block">
+                  <a href="#code-snippets" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-code"></i>
+                    </span>
+                    <span>Code Snippets</span>
+                  </a>
+                </span>
               </div>
             </div>
           </div>
@@ -151,7 +161,7 @@
 
   
 <!-- Code Example section -->
-<section class="section here is-light">
+<section class="section hero is-light" id="code-snippets">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-four-fifths">
@@ -169,15 +179,28 @@
                 <div class="window-control control-green"></div>
               </div>
               <div class="tab-container">
-                <div class="tab active" data-tab="gear">GeAR.pseudocode</div>
-                <div class="tab" data-tab="diverse">diverse_triple_beam_search.pseudocode</div>
+                <div class="tab active" data-tab="gear">
+                  <img src="static/images/python_logo.png" alt="Python Logo" class="tab-icon" />
+                  <span>GeAR.py</span>
+                  <span class="close-icon">×</span> <!-- Add this line -->
+                </div>
+                <div class="tab" data-tab="syncge">
+                  <img src="static/images/python_logo.png" alt="Python Logo" class="tab-icon" />
+                  <span>SyncGE.py</span>
+                  <span class="close-icon">×</span> <!-- Add this line -->
+                </div>
+                <div class="tab" data-tab="diverse">
+                  <img src="static/images/python_logo.png" alt="Python Logo" class="tab-icon" />
+                  <span>diverse_triple_beam_search.py</span>
+                  <span class="close-icon">×</span> <!-- Add this line -->
+                </div>
               </div>
             </div>
             <div class="code-content-container">
-                <div class="code-content active" id="gear-content">
-<pre><code><span class="code-keyword">class</span> <span class="code-function">GistMemory</span><span class="code-colon">:</span>
+<div class="code-content active" id="gear-content">
+<pre><code><span class="code-keyword">class</span> <span class="code-class">GistMemory</span><span class="code-colon">:</span>
     <span class="code-docstring">"""
-    Manages the accumulation and storage of proximal knowledge triples
+    Manages the accumulation and storage of proximal triples
     across multiple retrieval steps.
     """</span>
     <span class="code-keyword">def</span> <span class="code-function">__init__</span><span class="code-brackets">(</span><span class="code-variable">self</span><span class="code-brackets">)</span><span class="code-colon">:</span>
@@ -191,13 +214,12 @@
         <span class="code-docstring">"""Return all accumulated triples"""</span>
         <span class="code-keyword">return</span> <span class="code-variable">self</span><span class="code-punctuation">.</span><span class="code-variable">proximal_triples</span>
 
-<span class="code-keyword">def</span> <span class="code-function">gear</span><span class="code-brackets">(</span><span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">passages_index</span><span class="code-punctuation">,</span> <span class="code-variable">max_steps</span><span class="code-operator">=</span><span class="code-number">3</span><span class="code-brackets">)</span><span class="code-colon">:</span>
+<span class="code-keyword">def</span> <span class="code-function">GeAR</span><span class="code-brackets">(</span><span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">max_steps</span><span class="code-operator">=</span><span class="code-number">4</span><span class="code-brackets">)</span><span class="code-colon">:</span>
     <span class="code-docstring">"""
     GeAR pipeline implementation with multi-step retrieval capabilities.
     
     Parameters:
         query: Original input query  
-        passages_index: Collection of available passages
         max_steps: Maximum number of retrieval steps
     """</span>
     <span class="code-comment"># Initialize variables</span>
@@ -207,47 +229,77 @@
     <span class="code-variable">retrieved_passages</span> <span class="code-operator">=</span> <span class="code-brackets">[]</span>
     
     <span class="code-keyword">while</span> <span class="code-variable">step</span> <span class="code-operator"><=</span> <span class="code-variable">max_steps</span><span class="code-colon">:</span>
-        <span class="code-comment"># Base retrieval for current query</span>
-        <span class="code-variable">base_passages</span> <span class="code-operator">=</span> <span class="code-method">base_retriever</span><span class="code-brackets">(</span><span class="code-variable">current_query</span><span class="code-punctuation">,</span> <span class="code-variable">passages_index</span><span class="code-brackets">)</span>
+        <span class="code-comment"># Base retrieval for current query (i.e bm25)</span>
+        <span class="code-variable">base_passages</span> <span class="code-operator">=</span> <span class="code-method">base_retriever</span><span class="code-brackets">(</span><span class="code-variable">current_query</span><span class="code-brackets">)</span>
         
         <span class="code-comment"># Read passages and extract proximal triples via LLM</span>
         <span class="code-keyword">if</span> <span class="code-variable">step</span> <span class="code-operator">==</span> <span class="code-number">1</span><span class="code-colon">:</span>
-            <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">read</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
+            <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">reader</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
         <span class="code-keyword">else</span><span class="code-colon">:</span>
-            <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">read</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-brackets">)</span>
-            
-        <span class="code-comment"># Graph expansion using proximal triples</span>
-        <span class="code-variable">expanded_triples</span> <span class="code-operator">=</span> <span class="code-method">graph_expand</span><span class="code-brackets">(</span><span class="code-variable">proximal_triples</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
+            <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">reader</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-brackets">)</span>
         
+        <span class="code-comment"># Link proximal triples to their closest real triples in index</span>
+        <span class="code-variable">triples</span> <span class="code-operator">=</span> <span class="code-method">tripleLink</span><span class="code-brackets">(</span><span class="code-variable">proximal_triples</span><span class="code-brackets">)</span>
+
+        <span class="code-comment"># Graph expansion using proximal triples</span>
+        <span class="code-variable">expanded_passages</span> <span class="code-operator">=</span> <span class="code-method">graph_expasion</span><span class="code-brackets">(</span><span class="code-variable">triples</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
+
+        <span class="code-comment"># Combine base and expanded passages, and save them</span>
+        <span class="code-variable">combined_passages</span> <span class="code-operator">=</span> <span class="code-method">rrf</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span> <span class="code-operator">+</span> <span class="code-variable">expanded_passages</span><span class="code-brackets">)</span>
+        <span class="code-variable">retrieved_passages</span><span class="code-punctuation">.</span><span class="code-method">append</span><span class="code-brackets">(</span><span class="code-variable">combined_passages</span><span class="code-brackets">)</span>
+        
+        <span class="code-comment"># Read passages and extract proximal triples via LLM </span>
+        <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">gist_memory_constructor</span><span class="code-brackets">(</span><span class="code-variable">expanded_passages</span><span class="code-brackets">)</span>
+
         <span class="code-comment"># Add to gist memory</span>
         <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">add_triples</span><span class="code-brackets">(</span><span class="code-variable">proximal_triples</span><span class="code-brackets">)</span>
-        
-        <span class="code-comment"># Map expanded triples to passages</span>
-        <span class="code-variable">expanded_passages</span> <span class="code-operator">=</span> <span class="code-method">map_triples_to_passages</span><span class="code-brackets">(</span><span class="code-variable">expanded_triples</span><span class="code-brackets">)</span>
-        
-        <span class="code-comment"># Combine base and expanded passages using RRF</span>
-        <span class="code-variable">current_passages</span> <span class="code-operator">=</span> <span class="code-method">reciprocal_rank_fusion</span><span class="code-brackets">(</span><span class="code-brackets">[</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">expanded_passages</span><span class="code-brackets">]</span><span class="code-brackets">)</span>
-        <span class="code-variable">retrieved_passages</span><span class="code-punctuation">.</span><span class="code-method">append</span><span class="code-brackets">(</span><span class="code-variable">current_passages</span><span class="code-brackets">)</span>
-        
+
         <span class="code-comment"># Check if we have enough evidence to answer query</span>
         <span class="code-variable">is_answerable</span><span class="code-punctuation">,</span> <span class="code-variable">reasoning</span> <span class="code-operator">=</span> <span class="code-method">reason</span><span class="code-brackets">(</span><span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
         
         <span class="code-keyword">if</span> <span class="code-variable">is_answerable</span><span class="code-colon">:</span>
             <span class="code-keyword">break</span>
-            
-        <span class="code-comment"># Rewrite query for next step</span>
-        <span class="code-variable">current_query</span> <span class="code-operator">=</span> <span class="code-method">rewrite</span><span class="code-brackets">(</span><span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-punctuation">,</span> <span class="code-variable">reasoning</span><span class="code-brackets">)</span>
-        <span class="code-variable">step</span> <span class="code-operator">+=</span> <span class="code-number">1</span>
+        <span class="code-keyword">else</span><span class="code-colon">:</span>
+            <span class="code-comment"># Rewrite query for next step</span>
+            <span class="code-variable">current_query</span> <span class="code-operator">=</span> <span class="code-method">rewrite</span><span class="code-brackets">(</span><span class="code-variable">query</span><span class="code-punctuation">,</span> <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-punctuation">,</span> <span class="code-variable">reasoning</span><span class="code-brackets">)</span>
+            <span class="code-variable">step</span> <span class="code-operator">+=</span> <span class="code-number">1</span>
     
     <span class="code-comment"># Link final gist memory triples to passages</span>
-    <span class="code-variable">final_passages</span> <span class="code-operator">=</span> <span class="code-brackets">[]</span>
+    <span class="code-variable">gist_passages</span> <span class="code-operator">=</span> <span class="code-brackets">[]</span>
     <span class="code-keyword">for</span> <span class="code-variable">triple</span> <span class="code-keyword">in</span> <span class="code-variable">gist_memory</span><span class="code-punctuation">.</span><span class="code-method">get_all_triples</span><span class="code-brackets">()</span><span class="code-colon">:</span>
-        <span class="code-variable">linked_passages</span> <span class="code-operator">=</span> <span class="code-method">passage_link</span><span class="code-brackets">(</span><span class="code-variable">triple</span><span class="code-brackets">)</span>
-        <span class="code-variable">final_passages</span><span class="code-punctuation">.</span><span class="code-method">append</span><span class="code-brackets">(</span><span class="code-variable">linked_passages</span><span class="code-brackets">)</span>
+        <span class="code-variable">linked_passages</span> <span class="code-operator">=</span> <span class="code-method">passageLink</span><span class="code-brackets">(</span><span class="code-variable">triple</span><span class="code-brackets">)</span>
+        <span class="code-variable">gist_passages</span><span class="code-punctuation">.</span><span class="code-method">append</span><span class="code-brackets">(</span><span class="code-variable">linked_passages</span><span class="code-brackets">)</span>
     
     <span class="code-comment"># Final passage ranking combining all retrieved passages</span>
-    <span class="code-variable">final_passages</span><span class="code-punctuation">.</span><span class="code-method">extend</span><span class="code-brackets">(</span><span class="code-variable">retrieved_passages</span><span class="code-brackets">)</span>
-    <span class="code-keyword">return</span> <span class="code-method">reciprocal_rank_fusion</span><span class="code-brackets">(</span><span class="code-variable">final_passages</span><span class="code-brackets">)</span></code></pre>
+    <span class="code-variable">final_passages</span> <span class="code-operator">=</span> <span class="code-method">rrf</span><span class="code-brackets">(</span><span class="code-variable">gist_passages</span> <span class="code-operator">+</span> <span class="code-variable">retrieved_passages</span><span class="code-brackets">)</span>
+
+    <span class="code-keyword">return</span> <span class="code-variable">final_passages</span></code></pre>
+</div>
+<div class="code-content" id="syncge-content">
+  <pre><code><span class="code-keyword">def</span> <span class="code-function">SyncGE</span><span class="code-brackets">(</span><span class="code-variable">query</span><span class="code-brackets">)</span><span class="code-colon">:</span>
+    <span class="code-docstring">"""
+    SyncGE pipeline implementation.
+    
+    Parameters:
+        query: Input query  
+    """</span>
+    
+    <span class="code-comment"># Base retrieval for current query (i.e bm25)</span>
+    <span class="code-variable">base_passages</span> <span class="code-operator">=</span> <span class="code-method">base_retriever</span><span class="code-brackets">(</span><span class="code-variable">current_query</span><span class="code-brackets">)</span>
+    
+    <span class="code-comment"># Read passages and extract proximal triples via LLM</span>
+    <span class="code-variable">proximal_triples</span> <span class="code-operator">=</span> <span class="code-method">reader</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
+    
+    <span class="code-comment"># Link proximal triples to their closest real triples in index</span>
+    <span class="code-variable">triples</span> <span class="code-operator">=</span> <span class="code-method">tripleLink</span><span class="code-brackets">(</span><span class="code-variable">proximal_triples</span><span class="code-brackets">)</span>
+
+    <span class="code-comment"># Graph expansion using proximal triples</span>
+    <span class="code-variable">expanded_passages</span> <span class="code-operator">=</span> <span class="code-method">graph_expasion</span><span class="code-brackets">(</span><span class="code-variable">triples</span><span class="code-punctuation">,</span> <span class="code-variable">query</span><span class="code-brackets">)</span>
+
+    <span class="code-comment"># Combine base and expanded passages, and save them</span>
+    <span class="code-variable">combined_passages</span> <span class="code-operator">=</span> <span class="code-method">rrf</span><span class="code-brackets">(</span><span class="code-variable">base_passages</span> <span class="code-operator">+</span> <span class="code-variable">expanded_passages</span><span class="code-brackets">)</span>
+
+    <span class="code-keyword">return</span> <span class="code-variable">combined_passages</span></code></pre>
 </div>
               <div class="code-content" id="diverse-content">
                 <pre><code><span class="code-keyword">def</span> <span class="code-function">diverse_triple_search</span><span class="code-brackets">(</span><span class="code-variable">q</span><span class="code-punctuation">,</span> <span class="code-variable">t_list</span><span class="code-punctuation">,</span> <span class="code-variable">b</span><span class="code-punctuation">,</span> <span class="code-variable">l</span><span class="code-punctuation">,</span> <span class="code-variable">γ</span><span class="code-brackets">)</span><span class="code-colon">:</span>
