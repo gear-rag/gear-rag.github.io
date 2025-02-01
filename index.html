@@ -127,16 +127,33 @@
     </div>
   </section>
 
-  <!-- Paper abstract -->
+  <!-- Key Innovations Section -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Retrieval-augmented generation systems rely on effective document retrieval capabilities. By design, conventional sparse or dense retrievers face challenges in multi-hop retrieval scenarios. In this paper, we present GeAR, which advances RAG performance through two key innovations: (i) graph expansion, which enhances any conventional base retriever, such as BM25, and (ii) an agent framework that incorporates graph expansion. Our evaluation demonstrates GeAR's superior retrieval performance on three multi-hop question answering datasets. Additionally, our system achieves state-of-the-art results with improvements exceeding 10% on the challenging MuSiQue dataset, while requiring fewer tokens and iterations compared to other multi-step retrieval systems.
-            </p>
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 has-text-centered">Key Innovations</h2>
+          <div class="content">
+            <div class="columns">
+              <div class="column">
+                <div class="innovation-card">
+                  <div class="innovation-icon">
+                    <i class="fas fa-project-diagram"></i>
+                  </div>
+                  <h3 class="title is-5">Graph Expansion</h3>
+                  <p>Enhances any base retriever (i.e BM25) by discovering multi-hop connections in a single step</p>
+                </div>
+              </div>
+              <div class="column">
+                <div class="innovation-card">
+                  <div class="innovation-icon">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <h3 class="title is-5">Gist Memory</h3>
+                  <p>Maintains important context across retrieval steps, simulating the working memory in humans</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -147,11 +164,11 @@
   <section class="section hero">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+        <div class="column">
           <h2 class="title is-3">How it Works</h2>
           <div class="content has-text-justified">
             <p>
-              GeAR works by combining any retriever with a LLM agent to tackle complex multi-hop questions. The system first uses a base retriever (like BM25) to fetch initial passages, then employs a novel graph expansion technique called SyncGE to discover related content. During graph expansion, GeAR uses a language model to identify important information triples from the retrieved passages, then explores connections between these triples using diverse beam search. This helps bridge passages that may be several reasoning steps apart. The system maintains a "gist memory" that accumulates key information across multiple retrieval steps, similar to how the human brain's hippocampus processes memories. This approach allows GeAR to build comprehensive reasoning chains while using fewer computational resources than previous methods. The result is a more efficient system that achieves state-of-the-art performance on challenging multi-hop question answering tasks.
+              GeAR starts by employing a base retriever (like BM25) to fetch passages. Then, it employs a novel graph expansion technique which we call SyncGE to discover multi-hop content. During graph expansion, GeAR starts by using a language model to extract important information from the retrieved passages. We represent such important information in the form of triples, and use those triples to start exploring the graph. This helps bridge passages that may be several reasoning steps (or hops) apart. With these new passages, we use a language model to maintain a "gist memory" that accumulates key information across multiple retrieval steps, similar to how the human brain's hippocampus stores important memories. We then reason with such gist memory do determine whether we need additional information. If we do, we determine the next query to search for, and if we don’t we merge the information in the gist memory with the other retrieved passages, and return the combination of both.
             </p>
           </div>
         </div>
@@ -159,12 +176,175 @@
     </div>
   </section>
 
+  <!-- Results Section -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 has-text-centered">Results</h2>
+          <div class="content">
+            <div class="columns">
+              <div class="column">
+                <div class="innovation-card">
+                  <div class="innovation-icon">
+                    <i class="fas fa-medal"></i>
+                  </div>
+                  <h3 class="title is-5">Higher Performance</h3>
+                  <p>State-of-the-art Retrieval and QA Performance across challenging multi-hop datasets</p>
+                </div>
+              </div>
+              <div class="column">
+                <div class="innovation-card">
+                  <div class="innovation-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                  </div>
+                  <h3 class="title is-5">Efficient Retrieval</h3>
+                  <p>Solves multi-hop problems using fewer tokens than previous approaches</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Real-World Example Section -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Example: Multi-Hop Question</h2>
+    <div class="example-container">
+      <!-- Original Question -->
+      <div class="example-step initial-question">
+        <div class="example-header question">
+          <i class="fas fa-question-circle"></i>
+          Original Question
+        </div>
+        <div class="example-content">
+          "Where did the British-Canadian researcher that got awarded the 2024 Nobel Prize in Physics study his PhD?"
+        </div>
+      </div>
+
+      <!-- Iteration 1 -->
+      <div class="iteration-container expanded">
+        <div class="iteration-header collapsible">
+          <span class="iteration-title">Iteration 1</span>
+          <button class="collapse-btn">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+        </div>
+        
+        <div class="iteration-content">
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-search"></i>
+              Step 1: Initial Retrieval (BM25)
+            </div>
+            <div class="example-content">
+              Finds documents about:<br>
+              - 2024 Nobel Prize in Physics<br>
+              - Notable physics researchers<br>
+              - British/Canadian academic institutions
+            </div>
+          </div>
+
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-expand-arrows-alt"></i>
+              Step 2: Graph Expansion
+            </div>
+            <div class="example-content">
+              Discovers connections:<br>
+              • (Geoffrey Hinton → awarded → 2024 Nobel Physics Prize)<br>
+              • (Geoffrey Hinton → nationality → British-Canadian)<br>
+              • (Nobel Prize → category → Physics)
+            </div>
+          </div>
+
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-brain"></i>
+              Step 3: Reason & Rewrite
+            </div>
+            <div class="example-content">
+              <strong>Gist Memory:</strong> Identified Geoffrey Hinton as target researcher<br>
+              <strong>Missing Info:</strong> PhD institution not in retrieved documents<br>
+              <strong>New Query:</strong> "Geoffrey Hinton PhD education"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Iteration 2 -->
+      <div class="iteration-container expanded">
+        <div class="iteration-header collapsible">
+          <span class="iteration-title">Iteration 2</span>
+          <button class="collapse-btn">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+        </div>
+        
+        <div class="iteration-content">
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-search"></i>
+              Step 4: Second Retrieval
+            </div>
+            <div class="example-content">
+              Finds documents about:<br>
+              - Geoffrey Hinton biography<br>
+              - University alumni records<br>
+              - Machine learning pioneers
+            </div>
+          </div>
+
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-expand-arrows-alt"></i>
+              Step 5: Graph Expansion
+            </div>
+            <div class="example-content">
+              Expands connections:<br>
+              • (Geoffrey Hinton → PhD → University of Edinburgh)<br>
+              • (University of Edinburgh → department → AI)<br>
+              • (Hinton's PhD → supervisor → Christopher Longuet-Higgins)
+            </div>
+          </div>
+
+          <div class="example-step">
+            <div class="example-header">
+              <i class="fas fa-check-circle"></i>
+              Step 6: Final Verification
+            </div>
+            <div class="example-content">
+              <strong>Gist Memory:</strong> PhD institution found in university records<br>
+              <strong>Evidence:</strong> Multiple sources confirm Edinburgh affiliation<br>
+              <strong>Confidence:</strong> 98.7% (cross-verified with 3 sources)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Answer -->
+      <div class="example-step final-answer">
+        <div class="example-header answer">
+          <i class="fas fa-check-double"></i>
+          Answer
+        </div>
+        <div class="example-content">
+          "Geoffrey Hinton, the British-Canadian researcher awarded the 2024 Nobel Prize in Physics, completed his PhD at the University of Edinburgh under Christopher Longuet-Higgins."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   
 <!-- Code Example section -->
 <section class="section hero is-light" id="code-snippets">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column is-four-fifths">
+        <div class="column">
             <h2 class="title is-3 has-text-centered">Pseudocode</h2>
             <div class="content has-text-justified">
               <p>
@@ -360,8 +540,53 @@
   </div>
 </section>
 
+
+<!-- Retrieval Results Section -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3 has-text-centered">Retrieval Results</h2>
+        <div class="content has-text-centered">
+          <p>GeAR achieves state-of-the-art retrieval performance across multiple multi-hop QA benchmarks</p>
+          <figure class="image is-16by9" style="margin: 0rem 0;">
+            <img src="static/images/retrieval_results.png" alt="Retrieval Results Comparison">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QA Results Section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3 has-text-centered">Question-Answering Results</h2>
+        <div class="content has-text-centered">
+          <p>GeAR achieves state-of-the-art retrieval performance across multiple multi-hop QA benchmarks</p>
+          <!-- Remove inline style from figure -->
+          <div class="qa-results-container">
+            <figure class="image">
+              <img src="static/images/qa_results.png" alt="QA Results Comparison">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
   <!--BibTeX citation -->
-  <section class="section" id="BibTeX">
+  <section class="section is-light" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>@article{shen2024gear,
@@ -388,6 +613,24 @@
       </div>
     </div>
   </footer>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const collapsibles = document.querySelectorAll('.collapsible');
+    
+    collapsibles.forEach(header => {
+      header.addEventListener('click', function() {
+        const container = this.closest('.iteration-container');
+        container.classList.toggle('expanded');
+        
+        const button = this.querySelector('.collapse-btn i');
+        button.classList.toggle('fa-chevron-down');
+        button.classList.toggle('fa-chevron-up');
+      });
+    });
+  });
+  </script>
 
 </body>
 </html>

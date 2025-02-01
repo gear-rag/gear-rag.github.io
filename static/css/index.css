@@ -1,101 +1,28 @@
-/* Base styles */
+/* Base & Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
   background-color: #ffffff;
   color: #000000;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-.footer .icon-link {
-  font-size: 25px;
-  color: #000;
-}
-
-.link-block a {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.dnerf {
-  font-variant: small-caps;
-}
-
-/* Hero section styles */
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
-}
-
-/* Add these to your CSS */
 .container.is-max-desktop {
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
 }
 
-.code-content-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.code-content pre {
-  min-width: fit-content; /* Force scroll on overflow */
-  display: inline-block; /* Contain wide content */
-}
-
-/* Fix tab container scrolling */
-.tab-container {
-  overflow-x: auto;
-  scrollbar-width: thin; /* Firefox */
-}
-
-.tab-container::-webkit-scrollbar {
-  height: 4px; /* Chrome/Safari */
-}
-
-.teaser {
-  font-family: 'Google Sans', sans-serif;
-}
-
+/* Hero Section Styles */
 .publication-title {
   font-family: 'Google Sans', sans-serif;
   color: #000000;
 }
 
-.publication-banner {
-  max-height: parent;
-}
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {
-  background-color: #ffffff;
-}
-
-/* Publication details styles */
 .publication-authors {
   font-family: 'Google Sans', sans-serif;
-}
-
-.publication-venue {
-  color: #555;
-  width: fit-content;
-  font-weight: bold;
-}
-
-.publication-awards {
-  color: #ff3860;
-  width: fit-content;
-  font-weight: bolder;
 }
 
 .publication-authors a {
@@ -110,20 +37,13 @@ html {
   display: inline-block;
 }
 
-/* Close icon styles */
-.close-icon {
-  margin-left: 8px; /* Space between text and cross */
-  color: #ccc; /* Light grey color */
-  font-size: 24px; /* Adjust size as needed */
-  display: none; /* Hidden by default */
+/* Links and Buttons */
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-/* Show close icon only for active tabs */
-.tab.active .close-icon {
-  display: inline; /* Show the cross */
-}
-
-/* Code Window Styles */
+/* Code Window System */
 .code-window {
   background-color: #2d2d2d;
   border-radius: 20px;
@@ -143,7 +63,6 @@ html {
   align-items: center;
 }
 
-/* Window Controls */
 .window-controls {
   display: flex;
   gap: 8px;
@@ -155,53 +74,11 @@ html {
   border-radius: 50%;
 }
 
-.control-red {
-  background-color: #ff5f56;
-}
+.control-red { background-color: #ff5f56; }
+.control-yellow { background-color: #ffbd2e; }
+.control-green { background-color: #27c93f; }
 
-.control-yellow {
-  background-color: #ffbd2e;
-}
-
-.control-green {
-  background-color: #27c93f;
-}
-
-.results-carousel {
-  overflow: hidden;
-}
-
-.results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  padding: 20px;
-  font-size: 0;
-}
-
-.results-carousel video {
-  margin: 0;
-}
-
-/* Add this to your existing CSS */
-.tab-icon {
-  width: 15px; /* Adjust the size of the logo as needed */
-  height: 15px; /* Adjust the size of the logo as needed */
-  margin-right: 8px; /* Add spacing between the logo and the text */
-  vertical-align: middle; /* Align the logo vertically with the text */
-  transition: filter 0.3s ease; /* Smooth transition for the filter */
-}
-
-/* Normal appearance for the logo in active tabs */
-.tab.active .tab-icon {
-  filter: grayscale(0%); /* No grayscale (normal appearance) */
-}
-
-/* Greyed-out appearance for the logo in inactive tabs */
-.tab:not(.active) .tab-icon {
-  filter: grayscale(100%); /* Full grayscale (grey appearance) */
-}
-
-/* Tab Container and Tabs */
+/* Tab System */
 .tab-container {
   display: flex;
   margin-left: 20px;
@@ -209,16 +86,14 @@ html {
   height: 36px;
   overflow-x: auto;
   white-space: nowrap;
-  -ms-overflow-style: none;  /* Hide scrollbar IE and Edge */
-  scrollbar-width: none;     /* Hide scrollbar Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Hide scrollbar for Chrome/Safari/Opera */
 .tab-container::-webkit-scrollbar {
   display: none;
 }
 
-/* Ensure tabs don't shrink */
 .tab {
   padding: 8px 16px;
   background-color: #3d3d3d;
@@ -226,17 +101,14 @@ html {
   border-radius: 8px 8px 0 0;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 13px;
+  font-size: 14px;
   user-select: none;
   height: 28px;
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* Prevent tab from shrinking */
+  flex-shrink: 0;
 }
 
-
-
-/* Maintain existing hover and active states */
 .tab:hover {
   background-color: #2d2d2d;
   color: #ccc;
@@ -248,9 +120,43 @@ html {
   height: 32px;
 }
 
+.close-icon {
+  margin-left: 8px;
+  color: #ccc;
+  font-size: 24px;
+  display: none;
+}
+
+.tab.active .close-icon {
+  display: inline;
+}
+
+.tab-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  vertical-align: middle;
+  transition: filter 0.3s ease;
+}
+
+.tab.active .tab-icon {
+  filter: grayscale(0%);
+}
+
+.tab:not(.active) .tab-icon {
+  filter: grayscale(100%);
+}
+
 /* Code Content Area */
 .code-content-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   background-color: #1e1e1e;
+}
+
+.code-content pre {
+  min-width: fit-content;
+  display: inline-block;
 }
 
 .code-content {
@@ -266,64 +172,213 @@ html {
   display: block;
 }
 
-/* Code syntax highlighting */
-.code-keyword {
-  color: #569cd6;  /* def, class, return etc */
+/* Syntax Highlighting */
+.code-keyword { color: #569cd6; }
+.code-class { color: #4ec9b0; }
+.code-function { color: #dcdcaa; }
+.code-builtin { color: #4ec9b0; }
+.code-method { color: #dcdcaa; }
+.code-comment { color: #6a9955; }
+.code-string { color: #ce9178; }
+.code-number { color: #b5cea8; }
+.code-operator { color: #d4d4d4; }
+.code-variable { color: #9cdcfe; }
+.code-brackets { color: #dcdcaa; }
+.code-punctuation { color: #d4d4d4; }
+.code-colon { color: #569cd6; }
+.code-docstring { color: #cd9578; }
+
+/* Component Styles */
+.innovation-card {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.code-class {
-  color: #4ec9b0;  /* Green color for classes */
+.innovation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-.code-function {
-  color: #dcdcaa;  /* Function names */
+.innovation-icon {
+  font-size: 2.5rem;
+  color: #3273dc;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
 }
 
-.code-builtin {
-  color: #4ec9b0;  /* Built-in functions */
+.innovation-card:hover .innovation-icon {
+  transform: scale(1.1);
 }
 
-.code-method {
-  color: #dcdcaa;  /* Method calls */
+.innovation-card h3 {
+  transition: color 0.3s ease;
 }
 
-.code-comment {
-  color: #6a9955;  /* Comments */
+.innovation-card:hover h3 {
+  color: #3273dc;
 }
 
-.code-string {
-  color: #ce9178;  /* String literals */
+.innovation-card p {
+  transition: color 0.3s ease;
 }
 
-.code-number {
-  color: #b5cea8;  /* Number literals */
+.innovation-card:hover p {
+  color: #2c3e50;
 }
 
-.code-operator {
-  color: #d4d4d4;  /* Operators */
+/* Example Steps */
+.example-container {
+  margin: 0 auto;
 }
 
-.code-variable {
-  color: #9cdcfe;  /* Variables */
+.example-step {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.code-brackets {
-  color: #dcdcaa;  /* Brackets and parentheses */
+.example-step:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.code-punctuation {
-  color: #d4d4d4;  /* Commas and other punctuation */
+.example-header {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.code-colon {
-  color: #569cd6;  /* Colons */
+.example-header i {
+  font-size: 1.2em;
 }
 
-.code-docstring {
-  color: #cd9578;  /* Docstrings */
+.question { color: #d32f2f; }
+.answer { color: #2e7d32; }
+
+/* Images and Results */
+figure.image.is-16by9 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-/* Code block base styles */
+.qa-results-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.qa-results-container .image {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.qa-results-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+/* Iteration Containers */
+.iteration-container {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 2rem 0;
+  background: rgba(240, 240, 240, 0.3);
+  transition: all 0.3s ease;
+}
+
+.iteration-header.collapsible {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.25rem;
+  color: #2c3e50;
+  padding: 0.75rem 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: -1rem -1rem 0.5rem -1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.iteration-header.collapsible:hover {
+  background: #edf2f7;
+}
+
+.iteration-title {
+  font-weight: 500;
+}
+
+.collapse-btn {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.collapse-btn:focus {
+  outline: none;
+}
+
+.iteration-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  opacity: 0;
+}
+
+.iteration-container.expanded .iteration-content {
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+/* Final Answer and Initial Question Styles */
+.final-answer {
+  background: #e8f5e9;
+  border: 2px solid #2e7d32;
+  animation: pulse-green 2s ease-in-out;
+}
+
+.initial-question {
+  background: rgb(251, 245, 245);
+  border: 2px solid #9d7272;
+}
+
+@keyframes pulse-green {
+  0% { background-color: rgba(232, 245, 233, 0.5); }
+  50% { background-color: rgba(232, 245, 233, 1); }
+  100% { background-color: rgba(232, 245, 233, 0.5); }
+}
+
+/* Footer */
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+/* Code Block Base */
 pre {
   margin: 0;
   background-color: transparent;
@@ -334,3 +389,13 @@ code {
   font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
 }
 
+/* Icon Animations */
+.fa-chevron-up {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.fa-chevron-down {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
