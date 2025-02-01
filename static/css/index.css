@@ -537,8 +537,8 @@ figure.image.is-16by9 img {
 
 /* Call to Action Button */
 .cta-button {
-  /* Main color: #3273dc (blue) */
-  background-color: #3273dc;
+  /* Main color: blackish */
+  background-color: #2d2d2d;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   padding: 1.5rem 2rem;
   font-size: 1.25rem;
@@ -548,15 +548,15 @@ figure.image.is-16by9 img {
 }
 
 .cta-button:hover {
-  /* Slightly darker blue for hover */
-  background-color: #2860c5;
+  /* Slightly lighter black for hover */
+  background-color: #504f4f;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(50, 115, 220, 0.3);
+  box-shadow: 0 4px 15px rgba(117, 117, 117, 0.3);
 }
 
 .cta-button:active {
-  /* Even darker blue for active/clicked state */
-  background-color: #2351ad;
+  /* Even darker grey for active/clicked state */
+  background-color: #343434;
   transform: translateY(0);
 }
 
