@@ -534,3 +534,42 @@ figure.image.is-16by9 img {
   transform: rotate(180deg);
   transition: transform 0.3s ease;
 }
+
+/* Call to Action Button */
+.cta-button {
+  /* Main color: #3273dc (blue) */
+  background-color: #3273dc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  padding: 1.5rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  border: none;
+  color: white !important;
+}
+
+.cta-button:hover {
+  /* Slightly darker blue for hover */
+  background-color: #2860c5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(50, 115, 220, 0.3);
+}
+
+.cta-button:active {
+  /* Even darker blue for active/clicked state */
+  background-color: #2351ad;
+  transform: translateY(0);
+}
+
+.cta-button .icon {
+  margin-right: 0.5rem;
+}
+
+/* Keep the arXiv icon color consistent */
+.cta-button .ai-arxiv {
+  color: #B31B1B;
+}
+
+/* Add a subtle text shadow for better contrast */
+.cta-button span {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
