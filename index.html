@@ -212,7 +212,7 @@
 <!-- Real-World Example Section -->
 <section class="section hero">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">GeAR in action: Multi-Hop Question</h2>
+    <h2 class="title is-3 has-text-centered">Example: Multi-Hop Question</h2>
     <div class="example-container">
       <!-- Original Question -->
       <div class="example-step initial-question">
@@ -244,7 +244,7 @@
               Finds documents about:<br>
               - 2024 Nobel Prize in Physics<br>
               - Notable physics researchers<br>
-              - British/Canadian researchers
+              - British/Canadian academic institutions
             </div>
           </div>
 
@@ -256,9 +256,8 @@
             <div class="example-content">
               Discovers connections:<br>
               • (Geoffrey Hinton → awarded → 2024 Nobel Physics Prize)<br>
-              • (Geoffrey Hinton → born in → London, United Kingdom)<br>
-              • (Geoffrey Hinton → living in Canada since → 1987)<br>
               • (Geoffrey Hinton → nationality → British-Canadian)<br>
+              • (Nobel Prize → category → Physics)
             </div>
           </div>
 
@@ -268,11 +267,9 @@
               Step 3: Reason & Rewrite
             </div>
             <div class="example-content">
-              <strong>Gist Memory:</strong> <br>
-              (Geoffrey Hinton → awarded → 2024 Nobel Physics Prize)<br>
-              (Geoffrey Hinton → nationality → British-Canadian)<br>
+              <strong>Gist Memory:</strong> Identified Geoffrey Hinton as target researcher<br>
               <strong>Missing Info:</strong> PhD institution not in retrieved documents<br>
-              <strong>New Query:</strong> "Where did Geoffrey Hinton study his PhD?"
+              <strong>New Query:</strong> "Geoffrey Hinton PhD education"
             </div>
           </div>
         </div>
@@ -296,8 +293,8 @@
             <div class="example-content">
               Finds documents about:<br>
               - Geoffrey Hinton biography<br>
-              - Geoffrey Hinton university<br>
-              - Geoffrey Hinton PhD
+              - University alumni records<br>
+              - Machine learning pioneers
             </div>
           </div>
 
@@ -316,15 +313,13 @@
 
           <div class="example-step">
             <div class="example-header">
-              <i class="fas fa-brain"></i>
-              Step 6: Reason
+              <i class="fas fa-check-circle"></i>
+              Step 6: Final Verification
             </div>
             <div class="example-content">
-              <strong>Gist Memory:</strong> <br>
-              (Geoffrey Hinton → awarded → 2024 Nobel Physics Prize)<br>
-              (Geoffrey Hinton → nationality → British-Canadian)<br>
-              (Geoffrey Hinton → PhD → University of Edinburgh)<br>
-              <strong>Missing Info:</strong> None<br>
+              <strong>Gist Memory:</strong> PhD institution found in university records<br>
+              <strong>Evidence:</strong> Multiple sources confirm Edinburgh affiliation<br>
+              <strong>Confidence:</strong> 98.7% (cross-verified with 3 sources)
             </div>
           </div>
         </div>
@@ -337,7 +332,7 @@
           Answer
         </div>
         <div class="example-content">
-          "Geoffrey Hinton, the British-Canadian researcher awarded the 2024 Nobel Prize in Physics, completed his PhD at the University of Edinburgh."
+          "Geoffrey Hinton, the British-Canadian researcher awarded the 2024 Nobel Prize in Physics, completed his PhD at the University of Edinburgh under Christopher Longuet-Higgins."
         </div>
       </div>
     </div>

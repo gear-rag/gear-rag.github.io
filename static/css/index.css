@@ -1,4 +1,6 @@
+/* ===================== */
 /* Base & Global Styles */
+/* ===================== */
 html {
   scroll-behavior: smooth;
 }
@@ -9,16 +11,63 @@ body {
   color: #000000;
 }
 
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+/* ================ */
+/* Utility Classes */
+/* ================ */
 .container.is-max-desktop {
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
 }
 
+/* =================== */
 /* Hero Section Styles */
+/* =================== */
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
 .publication-title {
   font-family: 'Google Sans', sans-serif;
   color: #000000;
+}
+
+/* ======================== */
+/* Publication Details */
+/* ======================== */
+.publication-header .hero-body {
+  background-color: #ffffff;
+}
+
+.publication-banner {
+  max-height: parent;
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
 }
 
 .publication-authors {
@@ -37,13 +86,21 @@ body {
   display: inline-block;
 }
 
-/* Links and Buttons */
-.link-block a {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.publication-venue {
+  color: #555;
+  width: fit-content;
+  font-weight: bold;
 }
 
+.publication-awards {
+  color: #ff3860;
+  width: fit-content;
+  font-weight: bolder;
+}
+
+/* =================== */
 /* Code Window System */
+/* =================== */
 .code-window {
   background-color: #2d2d2d;
   border-radius: 20px;
@@ -78,7 +135,9 @@ body {
 .control-yellow { background-color: #ffbd2e; }
 .control-green { background-color: #27c93f; }
 
+/* ============== */
 /* Tab System */
+/* ============== */
 .tab-container {
   display: flex;
   margin-left: 20px;
@@ -147,7 +206,9 @@ body {
   filter: grayscale(100%);
 }
 
+/* ================== */
 /* Code Content Area */
+/* ================== */
 .code-content-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -172,7 +233,9 @@ body {
   display: block;
 }
 
+/* ======================== */
 /* Syntax Highlighting */
+/* ======================== */
 .code-keyword { color: #569cd6; }
 .code-class { color: #4ec9b0; }
 .code-function { color: #dcdcaa; }
@@ -188,7 +251,10 @@ body {
 .code-colon { color: #569cd6; }
 .code-docstring { color: #cd9578; }
 
+/* ====================== */
 /* Component Styles */
+/* ====================== */
+/* Enhanced Innovation and Results Cards */
 .innovation-card {
   text-align: center;
   padding: 2rem;
@@ -231,7 +297,36 @@ body {
   color: #2c3e50;
 }
 
-/* Example Steps */
+
+.process-steps {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.process-step {
+  position: relative;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: #3273dc;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
 .example-container {
   margin: 0 auto;
 }
@@ -242,12 +337,6 @@ body {
   background: white;
   border-radius: 8px;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.example-step:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .example-header {
@@ -265,7 +354,39 @@ body {
 .question { color: #d32f2f; }
 .answer { color: #2e7d32; }
 
-/* Images and Results */
+/* ================== */
+/* Results Carousel */
+/* ================== */
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+/* ================ */
+/* Code Block Base */
+/* ================ */
+pre {
+  margin: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+}
+
+
+
 figure.image.is-16by9 img {
   position: absolute;
   top: 0;
@@ -275,6 +396,7 @@ figure.image.is-16by9 img {
   object-fit: contain;
 }
 
+/* QA Results Container */
 .qa-results-container {
   display: flex;
   justify-content: center;
@@ -283,7 +405,7 @@ figure.image.is-16by9 img {
 
 .qa-results-container .image {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Adjust this for size */
   margin: 0 auto;
 }
 
@@ -295,7 +417,55 @@ figure.image.is-16by9 img {
   box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-/* Iteration Containers */
+
+/* CSS Additions */
+.iteration-container {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 2rem 0;
+  background: rgba(240, 240, 240, 0.3);
+}
+
+.iteration-header {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.25rem;
+  color: #2c3e50;
+  padding: 0.75rem 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: -1rem -1rem 1.5rem -1rem;
+}
+
+.final-answer {
+  background: #e8f5e9;
+  border: 2px solid #2e7d32;
+  animation: pulse-green 2s ease-in-out;
+}
+
+.initial-question {
+  background: rgb(251, 245, 245);
+  border: 2px solid #9d7272;
+  animation: pulse-red 2s ease-in-out;
+}
+
+@keyframes pulse-green {
+  0% { background-color: rgba(232, 245, 233, 0.5); }
+  50% { background-color: rgba(232, 245, 233, 1); }
+  100% { background-color: rgba(232, 245, 233, 0.5); }
+}
+
+.example-step {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.example-step:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* Collapsible Iterations Styles */
 .iteration-container {
   border: 2px solid #e0e0e0;
   border-radius: 12px;
@@ -349,47 +519,12 @@ figure.image.is-16by9 img {
 }
 
 .iteration-container.expanded .iteration-content {
-  max-height: 1000px;
+  max-height: 1000px; /* Adjust this value based on your content */
   opacity: 1;
   transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
 }
 
-/* Final Answer and Initial Question Styles */
-.final-answer {
-  background: #e8f5e9;
-  border: 2px solid #2e7d32;
-  animation: pulse-green 2s ease-in-out;
-}
-
-.initial-question {
-  background: rgb(251, 245, 245);
-  border: 2px solid #9d7272;
-}
-
-@keyframes pulse-green {
-  0% { background-color: rgba(232, 245, 233, 0.5); }
-  50% { background-color: rgba(232, 245, 233, 1); }
-  100% { background-color: rgba(232, 245, 233, 0.5); }
-}
-
-/* Footer */
-.footer .icon-link {
-  font-size: 25px;
-  color: #000;
-}
-
-/* Code Block Base */
-pre {
-  margin: 0;
-  background-color: transparent;
-  padding: 0;
-}
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
-}
-
-/* Icon Animations */
+/* Animation for chevron icon */
 .fa-chevron-up {
   transform: rotate(0deg);
   transition: transform 0.3s ease;
